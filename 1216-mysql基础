@@ -1,0 +1,93 @@
+1.什么是数据库
+	存储数据的软件
+2.常见的数据库软件
+	关系型数据库
+		informix   IBM+HP  军、政、运、银  小机
+		db2        IBM     军、政、运、银  (6kw+3kw)X4
+		oracle     甲骨文   中大型企业
+		mysql      甲骨文   互联网企业
+		sqlserver  微软     传统企业
+	非关系型数据库
+		mongodb    大数据、爬虫
+		redis      缓存、消息队列  微博
+		cassandra  facebook
+3.mysql软件的安装
+	a.安装方式
+		1>mysql官方下载
+		2>集成软件安装
+			xampp
+				x:任意操作系统
+				a:apache
+				m:mysql
+				p:php
+				p:perl
+			wamp
+				w:windows
+			phpstudy
+	b.phpstudy的安装和部署
+		1>下载phpstudy 2016
+		2>傻瓜安装
+		3>phpstudy的目录结构
+			apache  web服务器所在目录
+				bin  存放命令
+				conf 存放配置文件
+				logs 存放日志
+				httpd.conf apache的主配置文件
+			mysql   mysql数据库软件所在目录
+				bin  存放命令
+				data 存放数据
+				my.ini   mysql的配置文件
+			WWW     项目所在目录
+4.mysql基础
+	a.mysql的服务
+		mysqld   mysql的主服务
+		mysql    mysql的客户端服务
+		a1>启动服务
+		a2>检查服务和端口
+			mysql的端口：3306
+			查看进程
+			win+r---tasklist | find "mysqld"
+				tasklist   查看系统中所有进程
+				|          管道，前面的输出作为后面的输入
+				find       搜索
+			查看端口
+			win+r--cmd--netstat -an | find "3306"
+			补充:
+			0.0.0.0   任意IP
+			127.0.0.1==localhost  电脑本机
+	b.登陆
+		b1.登陆方式
+			1>进入到命令所在目录进行操作(临时)
+				d:
+				cd phpStudy\MySQL\bin
+			2>设置环境变量(永久)
+				作用:让系统可以找到命令
+				计算机--属性--高级--环境变量--系统变量--Path中添加mysql命令的路径
+				;D:\phpStudy\MySQL\bin
+				确定X3
+				设置完毕后重启命令提示符生效
+
+		b2.登陆命令(命令提示符)
+			mysql的管理员:root
+			mysql
+				登陆本地数据库
+			mysql -u root -p
+				管理员登陆本地数据库
+			mysql -u root -h 127.0.0.1 -p
+				管理员登陆IP为127.0.0.1数据库
+	c.mysql基础
+		数据库分为2部分:数据库软件，数据库数据
+		常说的数据库是数据库的数据
+		mysql数据库是由表组成
+		表是由数据组成
+		c1.基础命令(登陆后)
+			show databases;  	查看当前有哪些数据库
+			select database(); 	查看当前数据库的名字
+			use mysql;          切换当前数据库为mysql
+			show tables;        查看当前数据库中有哪些表
+			select * from user\G; 查看user表中所有数据
+
+
+
+
+
