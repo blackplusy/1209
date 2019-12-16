@@ -198,6 +198,7 @@
 				需求:删除韩国表;
 				truncate table 韩国;
 		c7.数据的查询
+			IP:192.168.5.213 root  test
 			授权用户可以远程登陆mysql
 			grant all privileges on *.* to root@'%' identified by 'test';
 			ecshop表结构
