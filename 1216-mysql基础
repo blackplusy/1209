@@ -86,6 +86,47 @@
 			use mysql;          切换当前数据库为mysql
 			show tables;        查看当前数据库中有哪些表
 			select * from user\G; 查看user表中所有数据
+		c2.表
+			1>表结构创建
+				表有行、有列，有数据，表头
+				11>数据类型
+					数字   int    123
+					字符   char   varchar    'abc123'
+					日期   date   '1988'
+					char varchar区别
+					char(10)   定长    abc
+					varchar(10) 变长   abc
+				12>表结构的创建
+					语法:create table 表名(
+							列  数据类型,
+							列  数据类型
+					);
+					需求:创建表商品(goods),商品名称(gname)字符类型，最多10个字符，价格(price) 数字类型，出厂日期(ddate)日期类型
+					create table goods(
+						gname  char(10),
+						price  int,
+						ddate  date
+					);
+				13>表结构的查看
+					desc 表名
+					需求:查看goods表的表结构
+				14>表结构的修改
+					新增列
+						需求:goods表中新增列，商品id(sid)数字类型
+							alter table goods add sid int;
+
+					修改列
+						需求:goods表中商品id列修改为字符类型
+							alter table goods modify sid char(10);
+					删除列
+						需求:goods表中删除上皮id列
+							alter table goods drop column sid;
+				15
+
+
+
+
+
 
 
 
