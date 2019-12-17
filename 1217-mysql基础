@@ -52,8 +52,23 @@
 		select g.goods_name from ecs_goods g,ecs_category c
 		where g.cat_id=c.cat_id
 		and c.cat_name='3G手机';
-
-
+	c.左联查询、右联查询
+	create table a(
+		id int
+		);
+	create table b(
+		id int,
+		name char(10)
+	);
+	insert into a values(1),(2),(3);
+	insert into b values(1,'a'),(2,'b'),(4,'d');
+	左联查询：左表中所有数据都有
+		select 列 from 左表 left join 右表 on 左表.列=右表.列;
+		查询结果为内联查询结果+左表中有，右表中没有，右表中对应位置显示为空
+		select * from a left join b on a.id=b.id;
+	右联查询:右表中所有数据都有
+		select 列 from 左表 right join 右表 on 左表.列=右表.列;
+		select * from a right join b on a.id=b.id;
 
 需求1:查询分类名称是3G手机或者服装的商品名称有哪些
 	select g.goods_name from  ecs_goods g,ecs_category c
@@ -81,7 +96,81 @@
 		where c1.cat_id=g1.cat_id
 		and g1.goods_name like '诺基亚%'
 		and c1.cat_name='3G手机';
-		
+
+--1.jpg
+a.
+select * from test1 where department='计算机系'
+and place='北京';
+b.
+update test1 set department='信息学院'
+where department='计算机系';
+c.
+select t1.no,t1.name,t2.grade,t2.courses from test1 t1,test2 t2
+where t1.no=t2.no 
+and
+t2.grade>=75;
+
+--2.jpg
+a>
+select s.name  from student s,achievement a
+where s.id=a.id and
+a.mark>85;
+b>
+select count(id) from achievement where
+mark>=90;
+c>
+insert into achievement values(7,80);
+d>
+update achievement set mark=87 where id=3;
+e>
+delete from student where name='Betty';
+delete from achievement where id=6;
+
+--4.jpg
+a>
+select s#,grade from sc where c#='C2';
+b>
+select sname from s where sname like 'D%';
+c>
+select  s.s#,s.sname  from  s,sc,c
+where s.s#=sc.s#
+and sc.c#=c.c#
+and c.cname='Maths';
+d>
+select s# from sc where c# in ('C2','C4');
+
+3.子查询
+一条SQL语句的执行结果依赖于另外一条SQL语句的执行结果
+需求:查询商品名称是KD876的分类名称
+a.分析列
+	goods_name
+	cat_name
+b.分析表
+	ecs_goods
+	ecs_category
+c.关联列
+	cat_id
+d.拆分
+	查询ecs_goods表中满足条件的cat_id
+		select cat_id from ecs_goods where goods_name='KD876';
+	查询ecs_category表中cat_id为上面查询出来结果的cat_name
+		select cat_name from ecs_category where cat_id=(select cat_id from ecs_goods where goods_name='KD876');
+子查询中查询子句可能返回一行或者多行
+	单行子查询:返回一个结果  =
+	多行子查询:返回多个结果  in  all  any
+	all  满足条件的所有数据
+	any  满足条件的任一数据
+查询商品价格高于3g手机的所有商品价格的商品的名称
+	查询3g手机商品cat_id
+	select cat_id from ecs_category where cat_name='3G手机';
+	查询3g手机商品的价格
+	select shop_price from ecs_goods where cat_id=(select cat_id from ecs_category where cat_name='3G手机');
+	查询商品价格高于上面查询出来结果的商品名称
+	select goods_name from ecs_goods where shop_price>all(select shop_price from ecs_goods where cat_id=(select cat_id from ecs_category where cat_name='3G手机'))
+
+
+
+
 
 
 
