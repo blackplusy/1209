@@ -168,7 +168,19 @@ d.拆分
 	查询商品价格高于上面查询出来结果的商品名称
 	select goods_name from ecs_goods where shop_price>all(select shop_price from ecs_goods where cat_id=(select cat_id from ecs_category where cat_name='3G手机'))
 
-
+4.sakila数据库
+	a.下载
+	b.导入sakila数据库
+		b1>解压压缩包
+		b2>命令提示符中进入到sakila文件夹
+		b3>登陆数据库
+			mysql -u root -p
+		b4>导入sakila-schema.sql
+			source sakila-schema.sql;
+		b5>导入sakila-data.sql
+			source sakila-data.sql;
+		b6>检查
+			查看sakila数据库中city中有没有数据
 
 
 
