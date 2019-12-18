@@ -128,7 +128,61 @@ b.分页(limit)
 					having 分组后过滤条件
 						order by 排序条件
 							limit 限制条件;
-							
+=========================================================
+--2.png
+a.select count(*) from table1;
+b.select  t2.学生家庭住址 from table1 t1,table2 t2
+where t1.学生id=t2.学生id
+and  t1.姓名 like '张%'
+and t1.性别='女'
+order by t1.姓名;
+
+
+
+--5.bmp
+a.select avg(english) from mark;
+b.
+select  m.math,c.name,c.telno,c.address from cust c,mark m
+where c.studenton=m.studentno
+and c.studentno in (11,22,33,44,55);
+
+--6.jpg
+create table user(
+	userid int(11),
+	username varchar2(20),
+	password varchar2(20),
+	crtime   date
+);
+insert into user values(1002,'admin','admin','2015-01-01');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
