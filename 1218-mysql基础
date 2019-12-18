@@ -155,11 +155,67 @@ create table user(
 );
 insert into user values(1002,'admin','admin','2015-01-01');
 
+--华为.jpg
+1.select * from student order by ssex;
+2.select * from score where degree between 80 and 100;
 
+--3.png
+a.select *  from dt_pay p,dt_emp e where  p.emploryid=e.emploryid and
+p.salary>(select avg(salary) from dt_pay);
+b.select * from dt_pay;
+c.truncate table dt_pay;
 
+--4.png
+1.
+select xm,zkzh from tb_student where score>0 and score<5;
+select * from tb_student where xm='张三' and score=5;
+2.
+select c.成绩表 from 学生表 s,成绩表 c
+where s.准考证号=c.准考证号
+and s.年龄 between 20 and 35
+order by c.准考证号 desc;
 
+===============================================================
+索引和视图
+a.索引:
+	类似于一本书的目录，加快查询速度，降低增删改效率
+	语法:create index 索引名字 on 表(列)
+	在某张表的某个列新增索引
+b.视图(只读)
+	是一种虚拟的表，从数据库中一个或者多个表中导出来的数据
+	操作简单化
+	增加数据安全性
+	提高表的逻辑独立性
+	create view 视图名字
+		as select 语句
+	删除视图
+	drop view 视图名字
+c.存储过程
+	为了以后使用而保存的一条或者多条SQL语句的集合
+	存储过程思想上是数据库SQL语言层面上的代码封装和重用
+	为什么使用存储过程
+	1.吧处理封装在单元中，简化复杂操作
+	2.防止错误保证了数据的一致性
+	3.简化变动管理(修改表名，列名修改对应存储过程，使用的人不需要知道变化)
+	4.提高性能
+	5.灵活
+		create procedure 名字
+		BEGIN
+		代码
+		END
 
+		delimiter //;  正常来说我们是见到；表示一条SQL语句的完结，存储过程中会有多条SQL语句,所以设置//为结束符
+	-> create procedure p_insert()            创建存储过程
+    -> begin                                  声明下面代码就是逻辑的开始
+    -> declare i int;                         声明一个变量i数据类型整型
+    -> set i=0;                               设置变量i的值是0
+    -> while i<10 do                          开始while..do循环
+    -> insert into d values(i);               循环体内，向表中新增数据
+    -> set i=i+1;                             新增后设置i变量加一
+    -> end while;                             结束while循环
+    -> end;//                                 代码逻辑结束
 
+    call p_insert();                          调用存储过程
 
 
 
