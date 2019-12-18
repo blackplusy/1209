@@ -34,7 +34,7 @@ select country from country where country_id in (select country_id from city whe
 
 
 =========================================================================================================
-分组查询
+1.分组查询
 按照某种属性进行分类
 a>分组函数(聚合)
 分组函数通常是和分组一起使用，但是也可以单独使用
@@ -72,15 +72,65 @@ where c.cat_id=g.cat_id
 group by c.cat_name
 having count(g.goods_name)>3;
 
-
-1.查询每个国家有多少个城市,要求显示国家名称,城市数量?
-
-
-2.查询每个城市有多少个客户,要求显示城市名称,客户数量(计算客户id)
-
-
-3.查询C开头的国家,每个国家有多少个城市
+查询每个国家有多少个城市,要求显示国家名称,城市数量?
+select co.country,count(c.city)  from country co,city c
+where co.country_id=c.country_id
+group by co.country;
 
 
-4.城市数量超过30的国家名称
+查询每个城市有多少个客户,要求显示城市名称,客户数量(计算客户id)
+select  c.city,count(cu.customer_id)  from city c,address a,customer cu
+where c.city_id=a.city_id
+and a.address_id=cu.addressid
+group by c.city;
+
+
+查询C开头的国家,每个国家有多少个城市
+select co.country,count(c.city)  from country co,city c
+where co.country_id=c.country_id
+group by co.country 
+having co.country like 'C%';
+
+
+城市数量超过30的国家名称
+select co.country,count(c.city)  from country co,city c
+where co.country_id=c.country_id
+group by co.country
+having count(c.city)>30;
+
+2.排序和分页
+a.排序
+	顺序(从小到大)
+		order by 列;
+		order by 列 asc;
+	逆序、倒序、反序(从大到小)
+		order by 列 desc;
+	语法:
+		select 列 from 表
+			where 条件
+				group by 分组条件
+					having 分组后过滤条件
+						order by 排序条件
+	需求:查询ecs_goods中所有数据，按照本店售价从大到小进行排列
+		select * from ecs_goods order by shop_price desc;
+	需求:查询ecs_goods中所有数据，按照商品id从小到大进行排列
+		select * from ecs_goods order by goods_id;
+b.分页(limit)
+	类似于邮箱，每页20条，1：1-20，2：21-40
+	需求:查询ecs_goods表中前5行数据
+	select * from ecs_goods limit 5;
+	需求:查询ecs_goods表中前6-15行数据
+	select * from ecs_goods limit 5,10;
+查询语法:
+		select 列 from 表
+			where 条件
+				group by 分组条件
+					having 分组后过滤条件
+						order by 排序条件
+							limit 限制条件;
+							
+
+
+
+
 
