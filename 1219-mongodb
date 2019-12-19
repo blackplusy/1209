@@ -21,7 +21,7 @@ c.mongo的启动
 		mongod   mongodb的主服务
 		mongo    mongodb的客户端服务
 	c2.启动命令（命令提示符）
-		--dbapth  数据存放的位置(文件夹),在启动前该文件夹一定要存在
+		--dbpath  数据存放的位置(文件夹),在启动前该文件夹一定要存在
 		--logpath 日志存放的位置(文件)
 		--fork    后台运行
 		mongod --dbpath d:\data
