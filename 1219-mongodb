@@ -119,6 +119,22 @@ j.查询表达式
 		10.空
 		db.xiyouji.find({age:{$type:1}})
 		https://docs.mongodb.com/manual/reference/operator/query/regex/#op._S_regex
+k.文档的更新
+	k1.更新文档
+		$set
+		db.xiyouji.update({name:'tai2'},{$set:{age:100}})
+	k2.覆盖文档
+		db.xiyouji.update({name:'tai2'},{age:300})
+	k3.自增
+		$inc   正数 增加  复数 减少
+		db.xiyouji.update({name:'gaga'},{$inc:{age:-210}})
+	k4.更新多个文档
+		增加multi参数，一次更新多个文档
+		db.xiyouji.update({name:'gaga'},{$set:{age:0}},{multi:true})
+	k5.删除指定属性
+		$unset
+		db.xiyouji.update({name:'gaga'},{$unset:{age:0}})
+
 
 
 
