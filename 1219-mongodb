@@ -50,6 +50,31 @@ e.基础命令
 	show tables
 	show collections  显示当前数据库中有哪些集合
 	db.system.version.find() 查看system.version集合中的所有文档
+f.mongodb的CURD
+	https://docs.mongodb.com/manual/crud/
+	文档的新增
+		db.xiyouji.insert({name:'5kong',age:18})
+	文档的查询
+		db.xiyouji.find({age:18})
+	文档的修改
+		db.xiyouji.update({name:'5kong'},{$set:{age:100}})
+	文档的删除
+		db.xiyouji.remove({name:'shasir'})
+g.mongodb的文档的新增
+	g1.新增普通文档
+		db.xiyouji.insert({name:'tangsir',age:18,tizhong:60})
+	g2.新增文档指定_id
+		db.xiyouji.insert({_id:0,name:'8jie',age:100})
+	g3.新增内嵌文档
+		db.xiyouji.insert({name:'5kong',jingli:{kill:100,hit:2}})
+	g4.新增多个文档
+		db.xiyouji.insert([{name:'niumo'},{name:'2dog'},{name:'redhair'}])
+h.mongodb的文档的删除
+	h1.删除所有文档
+		db.xiyouji.remove({})
+	h2.删除指定文档
+		db.xiyouji.remove({age:18})
+
 
 
 
