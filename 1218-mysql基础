@@ -204,7 +204,7 @@ c.存储过程
 		代码
 		END
 
-		delimiter //;  正常来说我们是见到；表示一条SQL语句的完结，存储过程中会有多条SQL语句,所以设置//为结束符
+		delimiter //  正常来说我们是见到；表示一条SQL语句的完结，存储过程中会有多条SQL语句,所以设置//为结束符
 	-> create procedure p_insert()            创建存储过程
     -> begin                                  声明下面代码就是逻辑的开始
     -> declare i int;                         声明一个变量i数据类型整型
