@@ -21,11 +21,11 @@ c.mongo的启动
 		mongod   mongodb的主服务
 		mongo    mongodb的客户端服务
 	c2.启动命令（命令提示符）
-		--dbpath  数据存放的位置(文件夹),在启动前该文件夹一定要存在
+		--dbapth  数据存放的位置(文件夹),在启动前该文件夹一定要存在
 		--logpath 日志存放的位置(文件)
 		--fork    后台运行
 		mongod --dbpath d:\data
-		mongod --dbpath d:\data --logpath d:\data\test.log
+		mongod --dbpath d:\data --logpath d:\data\test.log		
 	c3.检查服务
 		mongod   mongodb的主服务
 			tasklist | find "mongod"
@@ -74,6 +74,18 @@ h.mongodb的文档的删除
 		db.xiyouji.remove({})
 	h2.删除指定文档
 		db.xiyouji.remove({age:18})
+i.文档的查询
+	查询所有文档
+		db.xiyouji.find()
+	查询指定文档
+		db.xiyouji.find({name:'gaga'})
+	查询指定属性
+		db.xiyouji.find({},{_id:0,age:1})
+		 查询指定属性时候，第二个大括号中指定显示哪些属性，显示设置值为1，不显示设置值为0
+		_id 默认是显示的，1
+		其他属性默认不显示，0
+	查询指定文档的指定属性
+		db.xiyouji.find({age:18},{_id:0,name:1})
 
 
 
