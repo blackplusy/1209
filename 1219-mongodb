@@ -1,0 +1,57 @@
+1.mongodb
+a.mongodb的下载
+	建议到官网下载
+	https://www.mongodb.com/
+	注意:
+	操作系统
+		win
+		linux
+		unix
+	操作系统位数
+		32位
+		64位
+b.部署
+	b1.解压下载后的压缩包
+	b2.设置环境变量
+		Path环境变量中添加
+		;D:\share\软件\mongodb-win32-x86_64-2008plus-ssl-4.0.13\bin
+
+c.mongo的启动
+	c1.mongodb的服务
+		mongod   mongodb的主服务
+		mongo    mongodb的客户端服务
+	c2.启动命令（命令提示符）
+		--dbapth  数据存放的位置(文件夹),在启动前该文件夹一定要存在
+		--logpath 日志存放的位置(文件)
+		--fork    后台运行
+		mongod --dbpath d:\data
+		mongod --dbpath d:\data --logpath d:\data\test.log
+	c3.检查服务
+		mongod   mongodb的主服务
+			tasklist | find "mongod"
+		27017    mongodb的端口
+			netstat -an | find "27017"
+d.登陆命令
+	mongo
+			登陆到本地test数据库
+	mongo 127.0.0.1/admin
+			登陆IP为127.0.0.1的admin数据库
+	mongo 127.0.0.1:27017/admin
+			登陆IP为127.0.0.1的端口为27017的admin数据库
+e.基础命令
+	mongodb     mysql
+	数据库      数据库
+	集合        表
+	文档        数据
+	db         查看当前数据库的名字
+	show databases
+	show dbs    查看当前有哪些数据库
+	use  test   切换当前数据库为test
+	show tables
+	show collections  显示当前数据库中有哪些集合
+	db.system.version.find() 查看system.version集合中的所有文档
+
+
+
+
+
