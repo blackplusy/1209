@@ -1,0 +1,126 @@
+MYSQL基础考试1                               
+名字：
+
+
+1.怎样查看mysqld进程？win、linux
+tasklist | find "mysqld"
+ps -ef |grep mysqld
+
+2.mysql的管理员是和端口是？
+root
+3306
+
+3.怎样查看当前数据库名字？怎样查看当前所有数据库中所有表名？
+select database();         show tables;
+
+4.怎样查看表结构？
+desc 表名;
+
+5.mysql中常见的数据类型有哪些？
+char  varchar int date
+
+6.char和varchar的区别？
+char:定长
+varchar:变长
+
+7.解释一下DDL、DML、DCL，分别有哪些关键字？
+DDL:数据定义语言  create alter drop truncate
+DML:数据库操作语言 insert delete update
+DCL:数据库空值语句  grant revoke
+
+8.数据库中怎样处理事务？
+rollback;
+commit;
+
+9.建表时候的常见约束有哪些？外键约束需要注意什么？
+主键、唯一、非空、检查、外键(参考)  
+1.被参考表的参考列一定存在
+2.参考列和被参考列数据类型一致
+3.被参考列一定是主键约束
+10.where和having区别？
+where 分组前过滤，后面不能直接跟分组函数
+having 分组后过滤，后面可以直接跟分组函数
+
+11.delete和truncate区别？
+delete    可以删除指定数据，删除数据可以找回，DML
+truncate  只能删除所有数据，删除数据无法找回，DDL，自增字段初始化
+
+12.myisam和innodb引擎区别是什么？
+myisam  不支持事务，支持部分约束
+innodb  支持事务，支持大部分约束
+
+13.左联查询和右联查询区别是什么？
+左联查询:左表中所有数据都有
+右联查询:右表中所有数据都有
+
+下面3张表,写出相应SQL
+学生表
+学生名字 name  char(10)
+学生id   id    int(11)
+学生性别 sex   char(10)
+班级id   cid   int(11)
+学生生日  birth  date
+
+班级表
+班级名称  name  char(10)
+班级id    id    int(11)
+讲师id    tid   int(11)
+
+讲师表
+讲师id    tid   int(11)
+讲师名字  name   char(10)
+
+1.创建学生表
+create table 学生表(
+	name char(10),
+	id   int(11),
+	sex  char(10),
+	cid  int(11),
+	birth  date
+);
+
+2.向学生表中新增数据，名字kouniqiwasimida，学生id为100，班级id为100，生日1988-02-02
+
+alter table 学生表 modify 学生名字 char(40);
+
+insert into 学生表(id,cid,birth,name) values(100,100,'1988-02-02','kouniqiwasimida');
+
+
+3.查询学生名字以张开头的学生的生日
+select birth from 学生表 where  name like '张%';
+
+
+
+4.查询每个老师的班级中有多少学生？
+select j.name,count(s.name)  from 学生表 s,班级表 c,将是表 j
+where s.cid=c.id
+and c.tid=j.tid
+group by j.name;
+
+5.查询学生人数超过20的老师的名字?
+select j.name  from 学生表 s,班级表 c,将是表 j
+where s.cid=c.id
+and c.tid=j.tid
+group by j.name
+having count(s.name)>20;
+
+6.查询学生名字为张三并且老师名字为李四的班级名称
+select  c.name from 学生表 s,班级表 c,将是表 j
+where s.cid=c.id
+and c.tid=j.tid
+and s.name='张三'
+and j.name='李四';
+
+7.修改班级id为5的班级id为10
+update 班级表 set id=10 where id=5;
+update 学生表 set cid=10 where cid=5;
+
+
+8.删除班级名称是1218的所有学生信息
+select id from 班级表 where name='1218';
+delete  from 学生报 where cid in (select id from 班级表 where name='1218');
+
+9.查询学生表的第21行到30行数据
+select * from 学生表  limit 20,10;
+
+
